@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import trip_planner_app.authentication_service.dto.UserProfileRequestDTO;
 
-@FeignClient(name = "user-service", url = "localhost:8082")
+@FeignClient(name = "user-service")
 public interface UserServiceClient {
 
     @PostMapping("/api/trip-planner/user/create")
