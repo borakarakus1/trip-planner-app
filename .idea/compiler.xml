@@ -9,19 +9,21 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
         <module name="authentication-service" />
-        <module name="shared-config" />
-        <module name="user-service" />
         <module name="eureka-server" />
+        <module name="demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="shared-config" target="1.8" />
       <module name="token-verification-test" target="17" />
+      <module name="user-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="authentication-service" options="-parameters" />
+      <module name="demo" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="shared-config" options="-parameters" />
       <module name="token-verification-test" options="-parameters" />

@@ -10,11 +10,14 @@
         <option value="$PROJECT_DIR$/trip-planner-app-backend/token-verification-test/pom.xml" />
         <option value="$PROJECT_DIR$/trip-planner-app-backend/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/trip-planner-app-backend/shared-config/pom.xml" />
+        <option value="$PROJECT_DIR$/trip-planner-app-backend/demo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/trip-planner-app-backend/shared-config/pom.xml" />
         <option value="$PROJECT_DIR$/trip-planner-app-backend/token-verification-test/pom.xml" />
+        <option value="$PROJECT_DIR$/trip-planner-app-backend/user-service/pom.xml" />
       </set>
     </option>
   </component>
