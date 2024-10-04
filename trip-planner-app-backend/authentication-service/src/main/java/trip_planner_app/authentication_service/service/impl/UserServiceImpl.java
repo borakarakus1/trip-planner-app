@@ -1,6 +1,5 @@
 package trip_planner_app.authentication_service.service.impl;
 
-import trip_planner_app.authentication_service.dto.UserProfileRequestDTO;
 import trip_planner_app.authentication_service.exception.CustomException;
 import trip_planner_app.authentication_service.model.User;
 import trip_planner_app.authentication_service.repository.UserRepository;
@@ -13,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import trip_planner_app.authentication_service.service.UserServiceClient;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +23,6 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
-    private final UserServiceClient userServiceClient;
 
     @Override
     public String signin(String username, String password) {
@@ -42,12 +39,6 @@ public class UserServiceImpl implements UserService {
         if (!userRepository.existsByUsername(user.getUsername())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
-            UserProfileRequestDTO userProfileRequestDTO = new UserProfileRequestDTO();
-            userProfileRequestDTO.setUsername(user.getUsername());
-            userProfileRequestDTO.setEmail(user.getEmail());
-            userProfileRequestDTO.setPassword(user.getPassword());
-
-            userServiceClient.createUserProfile(userProfileRequestDTO);
             return jwtTokenProvider.createToken(user.getUsername(), user.getUserRoles());
         } else {
             throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);

@@ -1,5 +1,6 @@
 package trip_planner_app.authentication_service.controller;
 
+import org.springframework.http.ResponseEntity;
 import trip_planner_app.authentication_service.dto.UserDTO;
 import trip_planner_app.authentication_service.dto.UserResponseDTO;
 import trip_planner_app.authentication_service.model.User;
@@ -10,7 +11,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @RestController
@@ -27,11 +30,40 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 422, message = "Invalid username/password supplied")})
-    public String login(@ApiParam("Username") @RequestParam String username,
-                        @ApiParam("Password") @RequestParam String password) {
-        return userService.signin(username, password);
+    public ResponseEntity<?> login(@ApiParam("Username") @RequestParam String username,
+                                   @ApiParam("Password") @RequestParam String password,
+                                   HttpServletResponse response) {
+        String token = userService.signin(username, password);
+
+        // JWT token'ı `Cookie` olarak ekle
+        Cookie cookie = new Cookie("JWT_TOKEN", token);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        cookie.setMaxAge(3600); // 1 saat geçerli
+
+        response.addCookie(cookie);
+
+        return ResponseEntity.ok(token);
     }
 
+    /*
+    @PostMapping("/signin")
+public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) {
+    String token = userService.signin(username, password);
+
+    // JWT token'ı Cookie olarak ekle
+    Cookie cookie = new Cookie("JWT_TOKEN", token);
+    cookie.setHttpOnly(true); // JavaScript erişimini engellemek için
+    cookie.setSecure(true); // HTTPS üzerinden erişimi zorunlu hale getirir
+    cookie.setPath("/");
+    cookie.setMaxAge(7 * 24 * 60 * 60); // 7 gün boyunca geçerli
+
+    response.addCookie(cookie);
+
+    return ResponseEntity.ok("User signed in successfully!");
+}
+
+     */
     @PostMapping("/signup")
     @ApiOperation(value = "${UserController.signup}")
     @ApiResponses(value = {//

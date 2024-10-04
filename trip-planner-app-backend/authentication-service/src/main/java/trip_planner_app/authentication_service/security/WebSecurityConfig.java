@@ -33,7 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/trip-planner/authentication/signup").permitAll()
                 .antMatchers("/api/trip-planner/authentication/forgot-password").permitAll()
                 .antMatchers("/api/trip-planner/authentication/reset-password").permitAll()
-                .antMatchers("/api/trip-planner/user/**").permitAll()
                 .anyRequest().authenticated();
 
         http.exceptionHandling().accessDeniedPage("/login");
