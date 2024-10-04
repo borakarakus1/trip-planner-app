@@ -14,9 +14,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequests -> authorizeRequests
-                        .anyRequest().permitAll() // Tüm isteklere izin ver
+                        .anyRequest().permitAll()
                 )
-                .csrf(csrf -> csrf.disable()); // CSRF korumasını devre dışı bırak
+                .csrf(csrf -> csrf.disable());
 
         return http.build();
     }

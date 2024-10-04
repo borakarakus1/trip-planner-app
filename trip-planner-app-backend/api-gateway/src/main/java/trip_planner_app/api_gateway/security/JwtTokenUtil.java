@@ -22,11 +22,10 @@ public class JwtTokenUtil {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    // JWT Token oluşturma
     public String createToken(String username) {
         Claims claims = Jwts.claims().setSubject(username);
         Date now = new Date();
-        Date validity = new Date(now.getTime() + 3600000); // 1 saat geçerli
+        Date validity = new Date(now.getTime() + 3600000);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -47,7 +46,6 @@ public class JwtTokenUtil {
     }
 
 
-    // Token'dan kullanıcı adını alma
     public String getUsernameFromToken(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }

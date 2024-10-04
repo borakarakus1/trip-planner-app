@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
         <module name="authentication-service" />
+        <module name="shared-service" />
         <module name="eureka-server" />
         <module name="demo" />
       </profile>
@@ -26,6 +27,7 @@
       <module name="demo" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="shared-config" options="-parameters" />
+      <module name="shared-service" options="-parameters" />
       <module name="token-verification-test" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

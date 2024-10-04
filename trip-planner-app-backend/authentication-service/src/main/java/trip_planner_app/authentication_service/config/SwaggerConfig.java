@@ -24,7 +24,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("hms_app.authentication_service.controller")) // Only scan this package for controllers
+                .apis(RequestHandlerSelectors.basePackage("hms_app.authentication_service.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metadata())

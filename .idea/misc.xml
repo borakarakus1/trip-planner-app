@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/trip-planner-app-backend/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/trip-planner-app-backend/shared-config/pom.xml" />
         <option value="$PROJECT_DIR$/trip-planner-app-backend/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/shared-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
